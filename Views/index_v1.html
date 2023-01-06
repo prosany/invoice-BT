@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>HTML To PDF</title>
+    <style>
+      * {
+        border: 0;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+      }
+      body {
+        height: 25.3cm;
+        position: relative;
+      }
+      .header {
+        width: 100%;
+        overflow: hidden;
+      }
+      .invoice_id {
+        width: 50%;
+        float: left;
+        font-size: 12px;
+        font-family: "Maven_Pro_Sunny", sans-serif;
+      }
+      .invoice_id > h1 {
+        font-weight: 600;
+        font-style: normal;
+      }
+      .invoice_id > h1 > .invoice_number {
+        font-weight: 400;
+      }
+      .invoice_id > p {
+        font-weight: 400;
+      }
+      .invoice_logo {
+        width: 50%;
+        float: right;
+        text-align: right;
+        align-items: center;
+      }
+      .invoice_logo img {
+        width: 120px;
+        height: auto;
+        padding-top: 2px;
+        padding-right: 3px;
+      }
+
+      .user_info {
+        width: 100%;
+        overflow: hidden;
+        margin-top: 85px;
+      }
+      .bill_to {
+        width: 50%;
+        float: left;
+      }
+      .ship_to {
+        width: 50%;
+        float: right;
+      }
+      .from_to_head {
+        font-weight: 600;
+        font-size: 11px;
+        font-family: "Maven_Pro_Sunny", sans-serif;
+        color: #464646;
+        text-transform: uppercase;
+      }
+      .no_color {
+        color: #fff !important;
+      }
+      .from_to_title {
+        font-weight: 600;
+        font-size: 14px;
+        font-family: "Open_Sans_Hebrew_Sunny", sans-serif;
+        color: #000000;
+      }
+      .from_to_others {
+        font-weight: 400;
+        font-size: 13px;
+        font-family: "Maven_Pro_Sunny", sans-serif;
+        color: #000000;
+      }
+
+      .table_data {
+        width: 100%;
+        overflow: hidden;
+        margin-top: 50px;
+      }
+      .table_data > table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        font-family: "Open_Sans_Hebrew_Sunny", sans-serif;
+        font-size: 12px;
+        color: #000000;
+      }
+      .table_head {
+        font-weight: 400;
+        font-size: 11px;
+        font-family: "Open_Sans_Hebrew_Sunny", sans-serif;
+        color: #464646;
+        text-transform: uppercase;
+      }
+      .table_content {
+        font-weight: 400;
+        font-size: 13px;
+        font-family: "Open_Sans_Hebrew_Sunny", sans-serif;
+        color: #111111;
+        text-transform: capitalize;
+      }
+      .table_itself tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      .table_itself tr > th {
+        padding: 8px 0;
+      }
+
+      .table2_itself {
+        margin-top: 30px;
+      }
+      .table2_itself tr > th {
+        padding: 8px 0;
+      }
+      .table2_head {
+        font-weight: 400;
+        font-size: 11px;
+        font-family: "Open_Sans_Hebrew_Sunny", sans-serif;
+        color: #464646;
+        text-transform: uppercase;
+      }
+      .table2_content {
+        font-weight: 400;
+        font-size: 13px;
+        font-family: "Open_Sans_Hebrew_Sunny", sans-serif;
+        color: #111111;
+        text-transform: capitalize;
+      }
+
+      .footer_info {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+      }
+      .footer_info > .deatils {
+        width: 33.33%;
+        float: left;
+        text-align: center;
+      }
+      .footer_info > .deatils > p {
+        font-weight: 400;
+        font-size: 12px;
+        font-family: "Open_Sans_Hebrew_Sunny", sans-serif;
+        color: #111111;
+        text-transform: capitalize;
+      }
+
+      @font-face {
+        font-family: "Maven_Pro_Sunny";
+        src: url("https://res.cloudinary.com/mahabubsunny/raw/upload/v1645816615/fonts/MavenPro-Regular_hw1ter.ttf")
+          format("truetype");
+        font-weight: 400;
+      }
+      @font-face {
+        font-family: "Maven_Pro_Sunny";
+        src: url("https://res.cloudinary.com/mahabubsunny/raw/upload/v1645816615/fonts/MavenPro-Medium_fkerle.ttf")
+          format("truetype");
+        font-weight: 500;
+      }
+      @font-face {
+        font-family: "Maven_Pro_Sunny";
+        src: url("https://res.cloudinary.com/mahabubsunny/raw/upload/v1645816615/fonts/MavenPro-Bold_ummwu2.ttf")
+          format("truetype");
+        font-weight: 600;
+      }
+      @font-face {
+        font-family: "Open_Sans_Hebrew_Sunny";
+        src: url("https://res.cloudinary.com/mahabubsunny/raw/upload/v1645816616/fonts/OpenSansHebrew-Light_sc0uyy.ttf")
+          format("truetype");
+        font-weight: 300;
+      }
+      @font-face {
+        font-family: "Open_Sans_Hebrew_Sunny";
+        src: url("https://res.cloudinary.com/mahabubsunny/raw/upload/v1645816616/fonts/OpenSansHebrew-Regular_enx609.ttf")
+          format("truetype");
+        font-weight: 400;
+      }
+      @font-face {
+        font-family: "Open_Sans_Hebrew_Sunny";
+        src: url("https://res.cloudinary.com/mahabubsunny/raw/upload/v1645816615/fonts/OpenSansHebrew-Bold_xha72k.ttf")
+          format("truetype");
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="invoice_id">
+        <h1>Invoice <span class="invoice_number">#001</span></h1>
+        <p>Saturday, 26 February 2022</p>
+      </div>
+      <div class="invoice_logo">
+        <img
+          src="https://res.cloudinary.com/mahabubsunny/image/upload/v1645815150/Logo_dcwkcx.png"
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="user_info">
+      <div class="bill_to">
+        <h2 class="from_to_head">Bill To</h2>
+        <h1 class="from_to_title">Kalpas Innovation Pvt. Ltd.</h1>
+        <p class="from_to_others">
+          KLE-CTIE, R.H.Kulkarni Building, KLETU Campus,
+        </p>
+        <p class="from_to_others">Vidyanagar, Hubballi, Karnataka – 580031</p>
+        <p class="from_to_others">Email: Hello@kalpas.in</p>
+        <p class="from_to_others">Website: www.kalpas.in</p>
+      </div>
+      <div class="ship_to">
+        <h2 class="from_to_head no_color">Ship To</h2>
+        <h1 class="from_to_title">Shabrina</h1>
+        <p class="from_to_others">Front End Developer (React)</p>
+        <p class="from_to_others">
+          G.P.Ga-43, Middle Badda, Dhaka - 1212, Bangladesh.
+        </p>
+        <p class="from_to_others">Email: Shabrinasumci@gmail.com</p>
+        <p class="from_to_others">Website: www.fiverr.com/shabrina2</p>
+      </div>
+    </div>
+    <div class="table_data">
+      <table class="table_itself">
+        <tr>
+          <th class="table_head" style="width: 9%">#</th>
+          <th class="table_head" style="width: 40%">Service</th>
+          <th class="table_head" style="width: 17%">QTY</th>
+          <th class="table_head" style="width: 17%">Days</th>
+          <th class="table_head" style="width: 17%">Price</th>
+        </tr>
+        <tr>
+          <th class="table_content">1</th>
+          <th class="table_content">Web Development</th>
+          <th class="table_content">1</th>
+          <th class="table_content">-</th>
+          <th class="table_content">$300</th>
+        </tr>
+      </table>
+
+      <table class="table2_itself">
+        <tr>
+          <th class="table2_head" style="width: 49%; text-align: left">
+            Notes
+          </th>
+          <th class="table2_head" style="width: 17%">QTY</th>
+          <th class="table2_head" style="width: 17%">Total Days</th>
+          <th class="table2_head" style="width: 17%">TAX Rate</th>
+        </tr>
+        <tr>
+          <th class="table2_content" style="width: 49%; text-align: left">
+            Freelancing Service Fee
+          </th>
+          <th class="table2_content">1</th>
+          <th class="table2_content">-</th>
+          <th class="table2_content">0%</th>
+        </tr>
+        <tr>
+          <th class="table2_content"></th>
+          <th class="table2_content"></th>
+          <th class="table2_head">Payoneer Charge</th>
+          <th class="table2_head">Subtotal</th>
+        </tr>
+        <tr>
+          <th class="table2_content"></th>
+          <th class="table2_content"></th>
+          <th class="table2_content">$5</th>
+          <th class="table2_content">$295</th>
+        </tr>
+      </table>
+    </div>
+    <div class="footer_info">
+      <div class="deatils">
+        <p>Position</p>
+        <p>Front End Developer (React)</p>
+      </div>
+      <div class="deatils no_reqired">
+        <p>Website</p>
+        <p style="text-transform: lowercase">www.fiverr.com/shabrina2</p>
+      </div>
+      <div class="deatils">
+        <p>Telephone</p>
+        <p>(+880) 1639-432250</p>
+      </div>
+    </div>
+  </body>
+</html>
