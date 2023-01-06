@@ -21,6 +21,7 @@ module.exports = {
       pdf
         .create(data, options)
         .toFile(`./Public/${fileName}.pdf`, function (err, response) {
+          console.log("File", response);
           if (err) return err;
           res.send({
             status: 1,
